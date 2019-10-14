@@ -170,58 +170,168 @@ class CharacteristicTile extends StatelessWidget {
       this.onWritePressed,
       this.onNotificationPressed})
       : super(key: key);
-
+/*
+ * @@AQUI ABAJO MODIFICAR EL CODIGO DE EN SUBTITLE
+ */
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<int>>(
-      stream: characteristic.value,
-      initialData: characteristic.lastValue,
-      builder: (c, snapshot) {
-        final value = snapshot.data;
-        return ExpansionTile(
-          title: ListTile(
-            title: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text('Characteristic'),
-                Text(
-                    '0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}',
-                    style: Theme.of(context).textTheme.body1.copyWith(
-                        color: Theme.of(context).textTheme.caption.color))
-              ],
-            ),
-            subtitle: Text(value.toString()),
-            contentPadding: EdgeInsets.all(0.0),
-          ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.file_download,
-                  color: Theme.of(context).iconTheme.color.withOpacity(0.5),
+    return Column(
+
+      children: <Widget>[
+        StreamBuilder<List<int>>(
+          stream: characteristic.value,
+          initialData: characteristic.lastValue,
+          builder: (c, snapshot) {
+            final value = snapshot.data;
+             print('aquii:{$value}');
+            return ExpansionTile(
+              title: ListTile(
+                title: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                   /* Text('Characteristic'),
+                    Text(
+                        '0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}',
+                        style: Theme.of(context).textTheme.body1.copyWith(
+                            color: Theme.of(context).textTheme.caption.color)),
+                   */
+                   Text( 'Dato recivido {$value} ',
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.caption,
+                      ),
+                   _cardWidget(context, value),
+                   //_boton(context,value),
+
+                  ],
+
                 ),
-                onPressed: onReadPressed,
+               // subtitle: Text(value.toString()),
+                contentPadding: EdgeInsets.all(0.0),
+                
               ),
-              IconButton(
-                icon: Icon(Icons.file_upload,
-                    color: Theme.of(context).iconTheme.color.withOpacity(0.5)),
-                onPressed: onWritePressed,
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(
+                      Icons.file_download,
+                      color: Theme.of(context).iconTheme.color.withOpacity(0.5),
+                    ),
+                    onPressed: onReadPressed,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.file_upload,
+                        color: Theme.of(context).iconTheme.color.withOpacity(0.5)),
+                    onPressed: onWritePressed,
+                  ),
+                  IconButton(
+                    icon: Icon(
+                        characteristic.isNotifying
+                            ? Icons.sync_disabled
+                            : Icons.sync,
+                        color: Theme.of(context).iconTheme.color.withOpacity(0.5)),
+                    onPressed: onNotificationPressed,
+                  )
+                ],
               ),
-              IconButton(
-                icon: Icon(
-                    characteristic.isNotifying
-                        ? Icons.sync_disabled
-                        : Icons.sync,
-                    color: Theme.of(context).iconTheme.color.withOpacity(0.5)),
-                onPressed: onNotificationPressed,
-              )
+              children: descriptorTiles,
+            );
+          },
+        ),
+         
+        
+      ],
+    );
+  }
+  // ##########################################################################3
+  Widget _cardWidget (BuildContext context, List<int> dato){
+    if(dato!=null || dato[0]==null) {
+      /*if (dato[0]<=35){
+        //hombro izquierdo
+         
+      }
+      else{
+        if(dato[0]>=65){
+          //hombro derecho
+
+        }
+        else{
+          // todo nice
+          
+
+        }
+      }
+      */
+      return Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image(
+                    image: AssetImage('assets/img/hombro50.png'),   
+                    fit: BoxFit.cover,
+                    height: 160.0,
+                  ),
+                  ),
+                  SizedBox(height: 4.0,),
+                  Text( 'Dato: {$dato}',
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.caption,
+                  ), 
+                  
+                  
+                ],
+              );
+    }
+    else{
+      return Container();
+    }
+      
+  }
+
+  
+  _boton(BuildContext context, List<int> dato){
+    return RaisedButton(
+          child: Text('Mostrar Alerta'),
+          color: Colors.blue,
+          textColor: Colors.white,
+          shape: StadiumBorder(),
+          onPressed: ()=>_mostrarAlert(context,dato),
+        );
+  }
+  void _mostrarAlert(BuildContext context, List<int> dato){
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context){
+
+        return AlertDialog(
+          shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20.0)),
+          title: Text('titulo'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,// que se adapte al contenido interno
+            children: <Widget>[
+              Text('Alerta!! $dato'),
+              FlutterLogo(size: 100.0,),
+              Icon( Icons.person)
+
             ],
           ),
-          children: descriptorTiles,
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancelar'),
+              onPressed: ()=>Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         );
-      },
+
+      }
     );
   }
 }
@@ -234,6 +344,7 @@ class DescriptorTile extends StatelessWidget {
   const DescriptorTile(
       {Key key, this.descriptor, this.onReadPressed, this.onWritePressed})
       : super(key: key);
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -247,13 +358,17 @@ class DescriptorTile extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .body1
-                  .copyWith(color: Theme.of(context).textTheme.caption.color))
+                  .copyWith(color: Theme.of(context).textTheme.caption.color)),
+          Text('holi:$descriptor.value')
         ],
       ),
       subtitle: StreamBuilder<List<int>>(
         stream: descriptor.value,
         initialData: descriptor.lastValue,
-        builder: (c, snapshot) => Text(snapshot.data.toString()),
+        builder: (c, snapshot) {
+          Text(''+snapshot.data.toString());
+           
+        },
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
