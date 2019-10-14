@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_example/widgets/showDataProviderPage.dart';
  
 class HomePage extends StatelessWidget {
 
@@ -10,7 +11,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text( 'SIMOP - Menu principal' ),
       ),
-      body: Center(
+      body: Container(
+        
         child: _contentWidget()
       ),
       floatingActionButton: _superFloatingAction(context),
@@ -23,6 +25,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: 15.0,),
         Text('Bienvenido a SIMOP'),
+        ShowDataProvider()
 
 
 

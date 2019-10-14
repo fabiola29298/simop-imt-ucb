@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DataInfo with ChangeNotifier {
 
-  String _datax = 'Capitán América';
+  String _datax = '0';
   Color colorBase = Colors.blue;
 
 
