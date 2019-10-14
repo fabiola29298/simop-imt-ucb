@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
- 
-import 'package:flutter_blue_example/flare_page.dart'; 
+import 'package:provider/provider.dart'; 
 import 'package:flare_flutter/flare_actor.dart';
   
 import 'package:flutter_blue_example/provider/datainfo.dart';
@@ -28,6 +26,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
       children: <Widget>[
  
         flareAnimation(dataInfo),
+        /*
         RaisedButton(
           child: Text("dato 50"),
           onPressed: () {
@@ -37,25 +36,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
             });
           },
         ),
-        RaisedButton(
-          child: Text("dato 100"),
-          onPressed: () {
-            setState(() {
-               
-              dataInfo.datax='100';
-            });
-          },
-        ),
-        RaisedButton(
-          child: Text("dato 0"),
-          onPressed: () {
-            setState(() {
-              
-              dataInfo.datax='0';
-            });
-          },
-        ),
-        
+        */ 
 
       ],
     );

@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+import 'package:intl/intl.dart';
 
 class DataInfo with ChangeNotifier {
 
   String _datax = '50';
-  String animationX = 'hombro50';
+  String _animationX = 'hombro50';
+  String _time = '2000-00-00 00:00:00';
 
 
   get datax {
@@ -12,9 +14,18 @@ class DataInfo with ChangeNotifier {
 
   set datax( String dataxNew ) {
     this._datax = dataxNew;
-    this.animationX = cambiarAnimation(dataxNew);
+    this._animationX = cambiarAnimation(dataxNew);
+    this._time = cambiarTime();
      
     notifyListeners();
+  }
+
+  get animationX {
+    return _animationX;
+  }
+
+  get time {
+    return _time;
   }
 
 
@@ -35,5 +46,11 @@ class DataInfo with ChangeNotifier {
     }
 
     return newAnimation;
+  }
+
+  String cambiarTime (){
+    DateTime now = new DateTime.now();
+    String formatteDate = DateFormat('kk:mm:ss dd/MM/yyyy').format(now);
+    return formatteDate;
   }
 }

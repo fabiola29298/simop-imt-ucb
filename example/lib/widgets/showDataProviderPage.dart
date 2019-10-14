@@ -3,6 +3,7 @@ import 'package:flutter_blue_example/widgets/showFlareAnimationPage.dart';
 import 'package:provider/provider.dart'; 
 
 import 'package:flutter_blue_example/provider/datainfo.dart';
+import 'dart:math';
 
 class ShowDataProvider extends StatelessWidget {
   
@@ -25,20 +26,15 @@ class ShowDataProvider extends StatelessWidget {
         //   )
         // )
 
-
-        Text( 'Mostrando data:', 
+        SizedBox(height: 10.0,),
+        Text( 'dato: ${dataInfo.datax} \ntime: ${dataInfo.time} \nanimation: ${dataInfo.animationX} ', 
           style: TextStyle( 
-            fontSize: 10.0,
+            fontSize: 15.0,
             
           ),
         ),
-        Text( '${dataInfo.datax} - ${dataInfo.animationX}', 
-          style: TextStyle( 
-            fontSize: 20.0,
-            
-          ),
-        ), 
-        _botonWidget(context, dataInfo),
+         
+        botonWidget(context, dataInfo),
         ShowFlareAnimation()
         
 
@@ -50,20 +46,25 @@ class ShowDataProvider extends StatelessWidget {
   }
 
 
-  _botonWidget(BuildContext context,   DataInfo dataInfo){
+  botonWidget(BuildContext context,   DataInfo dataInfo){
+    var rng = new Random();
+    int numberRandom;
     return RaisedButton(
-          child: Text('Cambiar dato'),
+          child: Text('Cambiar dato random'),
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
           onPressed: (){
-            if(dataInfo.datax=='100'){
+            
+            numberRandom =  rng.nextInt(101);
+            dataInfo.datax= numberRandom.toString();
+          /*  if(dataInfo.datax=='100'){
               dataInfo.datax= '50';
             }
             else{
               dataInfo.datax= '100';
             }
-             
+          */   
           },
         );
   }
