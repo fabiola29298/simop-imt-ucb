@@ -15,8 +15,8 @@ class ShowFlareAnimation extends StatefulWidget {
 }
 
 class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
-  String _animationName = 'hombre0';
-
+   
+  
   @override
   Widget build(BuildContext context) {
     
@@ -32,7 +32,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
           child: Text("dato 50"),
           onPressed: () {
             setState(() {
-              _animationName = "hombro50";
+               
               dataInfo.datax='50';
             });
           },
@@ -41,7 +41,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
           child: Text("dato 100"),
           onPressed: () {
             setState(() {
-              _animationName = "hombro100";
+               
               dataInfo.datax='100';
             });
           },
@@ -50,7 +50,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
           child: Text("dato 0"),
           onPressed: () {
             setState(() {
-              _animationName = "hombre0";
+              
               dataInfo.datax='0';
             });
           },
@@ -61,26 +61,7 @@ class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
     );
     
   }
-String cambiarAnimation(DataInfo dataInfo){
-  String newAnimation='';
-  int dataInt = int.parse(dataInfo.datax);
-   
-  if(dataInt>35 || dataInt <65){
-    newAnimation ='hombro50';
-  }
-  else{
-    if(dataInt>35){
-      newAnimation ='hombre0';
-    }
-    else{
-      newAnimation ='hombro100';
-    }
-  }
 
-  return newAnimation;
-
-
-}
 Widget flareAnimation(DataInfo dataInfo){
   
   return Container(
@@ -90,7 +71,7 @@ Widget flareAnimation(DataInfo dataInfo){
             'assets/img/prueba2.flr',
             alignment: Alignment.center,
             fit: BoxFit.contain,
-            animation: _animationName,
+            animation: dataInfo.animationX,
           ),
   );
 }

@@ -31,12 +31,13 @@ class ShowDataProvider extends StatelessWidget {
             fontSize: 10.0,
             
           ),
-        ),Text( dataInfo.datax, 
+        ),
+        Text( '${dataInfo.datax} - ${dataInfo.animationX}', 
           style: TextStyle( 
             fontSize: 20.0,
             
           ),
-        ),
+        ), 
         _botonWidget(context, dataInfo),
         ShowFlareAnimation()
         
@@ -56,7 +57,13 @@ class ShowDataProvider extends StatelessWidget {
           textColor: Colors.white,
           shape: StadiumBorder(),
           onPressed: (){
-             dataInfo.datax= '100';
+            if(dataInfo.datax=='100'){
+              dataInfo.datax= '50';
+            }
+            else{
+              dataInfo.datax= '100';
+            }
+             
           },
         );
   }
