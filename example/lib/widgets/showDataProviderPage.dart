@@ -5,27 +5,22 @@ import 'package:provider/provider.dart';
 import 'package:flutter_blue_example/provider/datainfo.dart';
 import 'dart:math';
 
-class ShowDataProvider extends StatelessWidget {
+class ShowDataProvider extends StatefulWidget {
   
+  @override
+  _ShowDataProviderState createState() => _ShowDataProviderState();
+}
+
+class _ShowDataProviderState extends State<ShowDataProvider> {
   @override
   Widget build(BuildContext context) {
     
     final dataInfo   = Provider.of<DataInfo>(context); 
 
     return 
-    Column(
-     // mainAxisAlignment: MainAxisAlignment.center,
+    Column( 
       children: <Widget>[
-
-        // Consumer<HeroesInfo>(
-        //   builder: (context, heroesInfo, _ ) => Text( heroesInfo.heroe, 
-        //     style: TextStyle( 
-        //       fontSize: 30.0,
-        //       color: heroesInfo.colorBase
-        //     ),
-        //   )
-        // )
-
+ 
         SizedBox(height: 10.0,),
         Text( 'dato: ${dataInfo.datax} \ntime: ${dataInfo.time} \nanimation: ${dataInfo.animationX} ', 
           style: TextStyle( 
@@ -35,7 +30,7 @@ class ShowDataProvider extends StatelessWidget {
         ),
          
         botonWidget(context, dataInfo),
-        ShowFlareAnimation()
+        ShowFlareAnimation() 
         
 
          
@@ -44,7 +39,6 @@ class ShowDataProvider extends StatelessWidget {
     );
     
   }
-
 
   botonWidget(BuildContext context,   DataInfo dataInfo){
     var rng = new Random();
@@ -68,6 +62,4 @@ class ShowDataProvider extends StatelessWidget {
           },
         );
   }
-  
- 
 }

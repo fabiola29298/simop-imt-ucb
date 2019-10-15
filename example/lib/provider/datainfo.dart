@@ -13,9 +13,11 @@ class DataInfo with ChangeNotifier {
   }
 
   set datax( String dataxNew ) {
-    this._datax = dataxNew;
     this._animationX = cambiarAnimation(dataxNew);
     this._time = cambiarTime();
+    this._datax = dataxNew;
+    
+    
      
     notifyListeners();
   }
@@ -31,17 +33,70 @@ class DataInfo with ChangeNotifier {
 
   String cambiarAnimation(String dataNex){
     String newAnimation='';
+    //print('previous= $_datax - next= $dataNex');
     int dataInt = int.parse(dataNex);
+    int dataPrevious= int.parse(_datax);
     
-    if(dataInt>35 && dataInt <65){
-      newAnimation ='hombro50';
-    }
-    else{
-      if(dataInt<35){
-        newAnimation ='hombre0';
+    if(dataPrevious>35 && dataPrevious <65){
+      
+      if(dataInt>35 && dataInt <65 ){
+          newAnimation ='arrow50to50';
+          return newAnimation;
       }
       else{
-        newAnimation ='hombro100';
+
+      if(dataInt>=65){
+        newAnimation ='arrow50to100';
+        return newAnimation;
+      }
+      else{
+        if(dataInt<=35){
+        newAnimation ='arrow50to0';
+        return newAnimation;
+      }
+      }
+      }
+    }
+    else{
+      if(dataPrevious<=35){
+        if(dataInt>35 && dataInt <65 ){
+          newAnimation ='arrow0to50';
+          return newAnimation;
+        }
+        else{
+
+        if(dataInt>=65){
+          newAnimation ='arrow0to100';
+          return newAnimation;
+        }
+        else{
+          if(dataInt<=35){
+          newAnimation ='arrow0to0';
+          return newAnimation;
+        }
+        }
+        }
+      }
+      else{
+        if(dataPrevious>=65){
+        if(dataInt>35 && dataInt <65 ){
+          newAnimation ='arrow100to50';
+          return newAnimation;
+        }
+        else{
+
+        if(dataInt>=65){
+          newAnimation ='arrow100to100';
+          return newAnimation;
+        }
+        else{
+          if(dataInt<=35){
+          newAnimation ='arrow100to0';
+          return newAnimation;
+        }
+        }
+        }
+      }
       }
     }
 
