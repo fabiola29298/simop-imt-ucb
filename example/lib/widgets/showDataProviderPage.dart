@@ -23,12 +23,13 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
       children: <Widget>[
  
         SizedBox(height: 10.0,),
-        Text( 'dato: ${dataInfo.datax} \ntime: ${dataInfo.time} \nanimation: ${dataInfo.animationX} ', 
+        Divider(),
+        Text( 'dato: ${dataInfo.datax} \ntime: ${dataInfo.time}', 
           style: TextStyle( 
             fontSize: 15.0,
           ),
         ),
-         
+        Divider(),
         botonWidget(context, dataInfo),
         ShowFlareAnimation()
         
