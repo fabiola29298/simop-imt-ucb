@@ -10,6 +10,7 @@ import 'package:flutter_blue_example/pages/FindDevicesScreenPage.dart';
 import 'package:flutter_blue_example/pages/bluetoothPage.dart';
 import 'package:flutter_blue_example/pages/homePage.dart';
 import 'package:flutter_blue_example/provider/datainfo.dart';
+import 'package:flutter_blue_example/widgets/saveDataMysqlPage.dart';
 import 'package:provider/provider.dart';
  
 void main() {
@@ -36,6 +37,7 @@ class _FlutterBlueAppState extends State<FlutterBlueApp> {
            'bluetoothOffScreen': (context) => BluetoothOffScreen(),
            'home'              : (context) => HomePage(),
            'bluetooth'         : (context) => BluetoothPage(),
+           'basedatos'         : (context) => SaveDataMysql(),
 
            'deviceScreen'         : (context) => DeviceScreen(),
          },

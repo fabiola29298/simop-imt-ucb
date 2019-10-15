@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_example/widgets/saveDataMysqlPage.dart';
 import 'package:flutter_blue_example/widgets/showDataProviderPage.dart';
  
 class HomePage extends StatelessWidget {
@@ -7,25 +8,36 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     
+     return Scaffold(
       appBar: AppBar(
         title: Text( 'SIMOP - Menu principal' ),
       ),
-      body: Container(
-        
-        child: _contentWidget()
+      body: CustomScrollView(
+        slivers: <Widget>[ 
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _contentWidget(context)
+                
+              ]
+            ),
+          )
+        ],
       ),
       floatingActionButton: _superFloatingAction(context),
     );
   }
 
 
-  Widget _contentWidget(){
+  Widget _contentWidget(BuildContext context){
     return Column(
       children: <Widget>[
         SizedBox(height: 15.0,),
         Text('Bienvenido a SIMOP'),
-        ShowDataProvider()
+        ShowDataProvider(),
+        botonBaseDatos(context)
+         
 
 
 
@@ -34,7 +46,19 @@ class HomePage extends StatelessWidget {
     );
 
   }
-
+  botonBaseDatos(BuildContext context ){
+     
+     
+    return RaisedButton(
+          child: Text('Ver Base de datos'),
+          color: Colors.blue,
+          textColor: Colors.white,
+          shape: StadiumBorder(),
+          onPressed: (){
+             Navigator.pushNamed(context, 'basedatos' );
+          },
+        );
+  }
   Widget _superFloatingAction(BuildContext context){
 
     return Column(

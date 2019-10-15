@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_example/provider/db_providers.dart';
 import 'package:flutter_blue_example/widgets/showFlareAnimationPage.dart';
 import 'package:provider/provider.dart'; 
 import 'package:flutter_blue_example/provider/datainfo.dart';
@@ -51,7 +52,7 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
             
             numberRandom =  rng.nextInt(101);
             dataInfo.datax= numberRandom.toString();
-
+            _guardarMysql(dataInfo.datax, dataInfo.time);
            /* if(_name=='arrow100to100'){
               _name= 'arrow100to0';
             }
@@ -62,4 +63,14 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
           },
         );
   }
+
+  void _guardarMysql(String data,String date ){  
+ 
+      final scan = DataModel(dato1: data, date1: date );
+      DBProvider.db.nuevoScan(scan);
+     
+
+  }
+
+
 }
