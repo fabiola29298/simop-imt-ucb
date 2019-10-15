@@ -13,9 +13,7 @@ class ShowFlareAnimation extends StatefulWidget {
 }
 
 class _ShowFlareAnimationState extends State<ShowFlareAnimation> {
-  
-  
-  _update() => setState((){});
+   
   
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ Widget flareAnimation(String animationX){
             'assets/img/counter1.flr',
             alignment: Alignment.center,
             fit: BoxFit.contain,
-            animation: dataInfo.animationX,
+            animation: animationX,
             
           ),
   );

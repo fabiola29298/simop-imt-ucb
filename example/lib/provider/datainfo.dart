@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class DataInfo with ChangeNotifier {
 
   String _datax = '50';
-  String _animationX = 'hombro50';
+  String _animationX = 'arrow50to50';
   String _time = '2000-00-00 00:00:00';
 
 
@@ -79,16 +79,15 @@ class DataInfo with ChangeNotifier {
       }
       else{
         if(dataPrevious>=65){
-        if(dataInt>35 && dataInt <65 ){
-          newAnimation ='arrow100to50';
-          return newAnimation;
-        }
-        else{
-
         if(dataInt>=65){
           newAnimation ='arrow100to100';
           return newAnimation;
         }
+        else{
+          if(dataInt>35 && dataInt <65 ){
+          newAnimation ='arrow100to50';
+          return newAnimation;
+        } 
         else{
           if(dataInt<=35){
           newAnimation ='arrow100to0';

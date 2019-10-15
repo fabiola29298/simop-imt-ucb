@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_example/widgets/showFlareAnimationPage.dart';
 import 'package:provider/provider.dart'; 
-
 import 'package:flutter_blue_example/provider/datainfo.dart';
 import 'dart:math';
 
@@ -12,6 +11,7 @@ class ShowDataProvider extends StatefulWidget {
 }
 
 class _ShowDataProviderState extends State<ShowDataProvider> {
+  
   @override
   Widget build(BuildContext context) {
     
@@ -25,12 +25,11 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
         Text( 'dato: ${dataInfo.datax} \ntime: ${dataInfo.time} \nanimation: ${dataInfo.animationX} ', 
           style: TextStyle( 
             fontSize: 15.0,
-            
           ),
         ),
          
         botonWidget(context, dataInfo),
-        ShowFlareAnimation() 
+        ShowFlareAnimation()
         
 
          
@@ -52,13 +51,14 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
             
             numberRandom =  rng.nextInt(101);
             dataInfo.datax= numberRandom.toString();
-          /*  if(dataInfo.datax=='100'){
-              dataInfo.datax= '50';
+
+           /* if(_name=='arrow100to100'){
+              _name= 'arrow100to0';
             }
             else{
-              dataInfo.datax= '100';
+              _name= 'arrow100to100';
             }
-          */   
+           */
           },
         );
   }
