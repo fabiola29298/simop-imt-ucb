@@ -36,7 +36,8 @@ class HomePage extends StatelessWidget {
         SizedBox(height: 15.0,),
         Text('Bienvenido a SIMOP'),
         ShowDataProvider(),
-        botonBaseDatos(context)
+        botonBaseDatos(context), 
+        
          
 
 
@@ -56,6 +57,19 @@ class HomePage extends StatelessWidget {
           shape: StadiumBorder(),
           onPressed: (){
              Navigator.pushNamed(context, 'basedatos' );
+          },
+        );
+  }
+  botonNotificationWidget(BuildContext context ){
+     
+     
+    return RaisedButton(
+          child: Text('Ver notification'),
+          color: Colors.blue,
+          textColor: Colors.white,
+          shape: StadiumBorder(),
+          onPressed: (){
+             Navigator.pushNamed(context, 'notificationWidget' );
           },
         );
   }

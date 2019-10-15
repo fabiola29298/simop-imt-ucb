@@ -10,7 +10,9 @@ import 'package:flutter_blue_example/pages/FindDevicesScreenPage.dart';
 import 'package:flutter_blue_example/pages/bluetoothPage.dart';
 import 'package:flutter_blue_example/pages/homePage.dart';
 import 'package:flutter_blue_example/provider/datainfo.dart';
+import 'package:flutter_blue_example/widgets/local_notification_widget.dart';
 import 'package:flutter_blue_example/widgets/saveDataMysqlPage.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
  
 void main() {
@@ -38,7 +40,9 @@ class _FlutterBlueAppState extends State<FlutterBlueApp> {
            'home'              : (context) => HomePage(),
            'bluetooth'         : (context) => BluetoothPage(),
            'basedatos'         : (context) => SaveDataMysql(),
+           'notificationWidget': (context) => LocalNotificationWidget(),
 
+           
            'deviceScreen'         : (context) => DeviceScreen(),
          },
       
