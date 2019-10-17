@@ -25,8 +25,7 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
 
   @override
   void initState() {
-    super.initState();
-    clearNotification();
+    super.initState(); 
     final settingsAndroid = AndroidInitializationSettings('launch_background');
     final settingsIOS = IOSInitializationSettings(
         onDidReceiveLocalNotification: (id, title, body, payload) =>
@@ -68,7 +67,7 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
         Divider(),
         botonWidget(context, dataInfo),
         ShowFlareAnimation(),
-        buttonClearNotification( )
+        //buttonClearNotification( )
         
 
          
@@ -108,7 +107,7 @@ class _ShowDataProviderState extends State<ShowDataProvider> {
      
   }
 
-Widget buttonClearNotification(){
+/*Widget buttonClearNotification(){
   return RaisedButton(
           child: Text('Limpiar notificaciones'),
           color: Colors.blue,
@@ -118,14 +117,8 @@ Widget buttonClearNotification(){
             clearNotification();
           },
         );
-}
-void clearNotification(){
-
-    notifications.cancelAll;
-
-     
-  }
-  
+} 
+*/  
   void _guardarMysql(String data,String date ){  
  
       final scan = DataModel(dato1: data, date1: date );

@@ -1,8 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart'; 
-import 'package:flutter_blue_example/widgets.dart'; 
+import 'package:flutter_blue_example/widgets.dart';
+import 'package:flutter_blue_example/widgets/showDataProviderPage.dart'; 
   
+import 'package:flutter_swiper/flutter_swiper.dart';
+
   class DeviceScreen extends StatelessWidget {
   const DeviceScreen({Key key, this.device}) : super(key: key);
 
@@ -44,6 +47,9 @@ import 'package:flutter_blue_example/widgets.dart';
 
   @override
   Widget build(BuildContext context) {
+
+      final _screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(device.name),
@@ -124,15 +130,32 @@ import 'package:flutter_blue_example/widgets.dart';
               stream: device.services,
               initialData: [],
               builder: (c, snapshot) {
-                return Column(
-                  children: <Widget>[
-                    Column(
-                      children: 
-                      _buildServiceTiles(snapshot.data),
-                    ),
-                    
+                return CustomScrollView(
+                  slivers: <Widget>[ 
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        [
+                          Container(
+                            width: _screenSize.width,
+                            height:  _screenSize.height * 0.4, 
+                            padding: EdgeInsets.only(top: 10.0),
+                            child:   Column(
+                                  children: 
+                                  _buildServiceTiles(snapshot.data),
+                                ),  
+                          ),
+                          Column(
+                            children: <Widget>[
+                              SizedBox(height: 15.0,),
+                              Text('Bienvenido a SIMOP'),
+                              ShowDataProvider(),
+                              botonBaseDatos(context),  
+                            ], 
+                          )
+                        ]
+                      ),
+                    )
                   ],
-                  
                 );
               },
             ),
@@ -142,5 +165,17 @@ import 'package:flutter_blue_example/widgets.dart';
       ),
     );
   }
-  
+    botonBaseDatos(BuildContext context ){
+     
+     
+    return RaisedButton(
+          child: Text('Ver Base de datos'),
+          color: Colors.blue,
+          textColor: Colors.white,
+          shape: StadiumBorder(),
+          onPressed: (){
+             Navigator.pushNamed(context, 'basedatos' );
+          },
+        );
+  }
 }

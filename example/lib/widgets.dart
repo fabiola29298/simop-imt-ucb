@@ -4,7 +4,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-
+import 'package:flutter_blue_example/provider/db_providers.dart';
+ 
+import 'package:provider/provider.dart'; 
+import 'package:flutter_blue_example/provider/datainfo.dart'; 
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key key, this.result, this.onTap}) : super(key: key);
 
@@ -175,6 +178,7 @@ class CharacteristicTile extends StatelessWidget {
  */
   @override
   Widget build(BuildContext context) {
+
     return Column(
 
       children: <Widget>[
@@ -196,6 +200,7 @@ class CharacteristicTile extends StatelessWidget {
                         style: Theme.of(context).textTheme.body1.copyWith(
                             color: Theme.of(context).textTheme.caption.color)),
                    */
+                  
                    Text( 'Dato recivido {$value} ',
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.caption,
@@ -246,6 +251,14 @@ class CharacteristicTile extends StatelessWidget {
   }
   // ##########################################################################3
   Widget _cardWidget (BuildContext context, List<int> dato){
+
+    final dataInfo   = Provider.of<DataInfo>(context); 
+    //**************** Agregando dato a provider
+    dataInfo.datax = dato[0].toString();
+                
+    _guardarMysql(dataInfo.datax, dataInfo.time);
+    //**************** 
+
     if(dato!=null || dato[0]==null) {
       /*if (dato[0]<=35){
         //hombro izquierdo
@@ -289,7 +302,13 @@ class CharacteristicTile extends StatelessWidget {
       
   }
 
-  
+  void _guardarMysql(String data,String date ){  
+ 
+      final scan = DataModel(dato1: data, date1: date );
+      DBProvider.db.nuevoScan(scan);
+     
+
+  }
   _boton(BuildContext context, List<int> dato){
     return RaisedButton(
           child: Text('Mostrar Alerta'),
