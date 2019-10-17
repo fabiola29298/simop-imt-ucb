@@ -144,13 +144,17 @@ import 'package:flutter_swiper/flutter_swiper.dart';
                                   _buildServiceTiles(snapshot.data),
                                 ),  
                           ),
-                          Column(
-                            children: <Widget>[
-                              SizedBox(height: 15.0,),
-                              Text('Bienvenido a SIMOP'),
-                              ShowDataProvider(),
-                              botonBaseDatos(context),  
-                            ], 
+                          Container( 
+                            width: _screenSize.width,
+                            height:  _screenSize.height * 0.6,
+                            child:Column(
+                              children: <Widget>[
+                                SizedBox(height: 15.0,),
+                                Text('Bienvenido a SIMOP'),
+                                ShowDataProvider(),
+                                botonBaseDatos(context),  
+                              ], 
+                            )
                           )
                         ]
                       ),
